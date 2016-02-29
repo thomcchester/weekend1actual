@@ -25,6 +25,7 @@ function runAll(){ // This is my function that runs everything in the document r
   $(".MBR").on("click", salaryBurnMonthly);// this is for the Monthly
   //burn rate thing
 };
+
 function runDelete(){ // delete function
   var checker = parseInt(this.id);//takes the id number and turns to
   // to a number and find the employeeArray
