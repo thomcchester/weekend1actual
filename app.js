@@ -38,7 +38,7 @@ function runDelete(){ // delete function
 
 var employeeArray=[];//array of employees
 
-function salaryBurnMonthly(){
+function salaryBurnMonthly(){ //calculates monthly expenditure
   var totMonBurn = 0;
   $(".monBurnPrint").remove()
   for(var i = 0; i<employeeArray.length;i++){
@@ -55,7 +55,7 @@ function salaryBurnMonthly(){
 
 }
 
-function eachIndividual(){
+function eachIndividual(){// calculates individual information
   for(var i = 0; i<employeeArray.length;i++){
     var employeeSalaryInfo = employeeArray[i];
     employeeSalaryInfoMonthly = parseInt(employeeSalaryInfo.yearlysalary)/12;
@@ -64,7 +64,7 @@ function eachIndividual(){
     var salarytot = employeeSalaryInfo.yearlysalary;
     $(".container2").append('<div class="monBurn"></div>');
     var $el = $(".container2").children().last();
-    $el.append("<p> Employee Name, Salary, Mothly Salary: " + namefirst + " " + namesecond+", "+  salarytot+", "+employeeSalaryInfoMonthly+"<button class='buttonDelete' id="+i+ ">Delete</button"+ "</p>");
+    $el.append("<p> Employee Name, Salary, Mothly Salary: " + namefirst + " " + namesecond+", "+  salarytot+", "+employeeSalaryInfoMonthly+"<button class='buttonDelete' id="+i+ ">Delete</button"+ "</p>");// makes print stuff on html
 
   }
 }
