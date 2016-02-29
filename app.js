@@ -5,6 +5,7 @@ $(document).ready(function(){
 });
 
 function runAll(){ // This is my function that runs everything in the document ready
+
   $("#employeeForm").on("submit", function(event){ //this function is addapted from
     //the car array one
     event.preventDefault();
@@ -20,24 +21,34 @@ function runAll(){ // This is my function that runs everything in the document r
     employeeArray.push(employeeValues);
     $(".container2").empty(); //I made a second container
     eachIndividual();//this runs each individual student
+
     $(".buttonDelete").on("click", runDelete);
+    salaryBurnMonthly()
   });
   $(".MBR").on("click", salaryBurnMonthly);// this is for the Monthly
   //burn rate thing
 };
 
 function runDelete(){ // delete function
-  var checker = parseInt(this.id);//takes the id number and turns to
+  var checker = parseInt(this.indicator);//takes the id number and turns to
   // to a number and find the employeeArray
   employeeArray.splice(checker,1);//takes array index
   $(this).parent().parent().remove(); //removes containter2 it from array
   $(".body").append('<div class="container2"></div>')//reputs containter2 in
-
+  salaryBurnMonthly();
 
 }
 
 var employeeArray=[];//array of employees
-
+function addIndex(){
+  for(var i = 0; i<employeeArray.length;i++){
+    if (i==undefined){
+    employeeArray[i].number=0;
+  }else{
+    employeeArray[i].number=i+1
+  }
+  }
+}
 function salaryBurnMonthly(){ //calculates monthly expenditure
   var totMonBurn = 0;
   $(".monBurnPrint").remove()
@@ -45,6 +56,7 @@ function salaryBurnMonthly(){ //calculates monthly expenditure
     var employeeSalaryInfo = employeeArray[i];
     employeeSalaryInfoMonthly = parseInt(employeeSalaryInfo.yearlysalary)/12;
     totMonBurn += employeeSalaryInfoMonthly;
+    employeeSalaryInfo.number=i;
 
   }
   totMonBurn = Math.ceil(totMonBurn);
@@ -62,9 +74,10 @@ function eachIndividual(){// calculates individual information
     var namefirst = employeeSalaryInfo.employeenamefirst;
     var namesecond = employeeSalaryInfo.employeelastname;
     var salarytot = employeeSalaryInfo.yearlysalary;
+    var indicator = employeeSalaryInfo.number;
     $(".container2").append('<div class="monBurn"></div>');
     var $el = $(".container2").children().last();
-    $el.append("<p> Employee Name, Salary, Mothly Salary: " + namefirst + " " + namesecond+", "+  salarytot+", "+employeeSalaryInfoMonthly+"<button class='buttonDelete' id="+i+ ">Delete</button"+ "</p>");// makes print stuff on html
+    $el.append("<p> Employee Name, Salary, Mothly Salary: <p></p>"+ namefirst + " " + namesecond+", "+  salarytot+", "+employeeSalaryInfoMonthly+"<button class='buttonDelete' id="+i+ ">Delete</button></p>");// makes print stuff on html
 
   }
 }
